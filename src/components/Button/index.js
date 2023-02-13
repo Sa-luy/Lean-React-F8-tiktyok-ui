@@ -16,6 +16,7 @@ function Button({
     small = false,
     large = false,
     children,
+    className,
     leftIcon,
     rightIcon,
     onClick,
@@ -41,6 +42,7 @@ function Button({
         Comp = 'a';
     }
     const classes = cx('wrapper', {
+        [className]: className,
         primary,
         outline,
         upload,

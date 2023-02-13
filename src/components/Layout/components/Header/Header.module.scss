@@ -103,8 +103,9 @@ input:not(:placeholder-shown) ~ .search-btn {
         background: rgba(22, 24, 35, .06);
     }
 }
-// .icon-upload {
-//     height: 20px;
-//     width: 20px;
-//     margin-right: 8px;
-// }
+.more-btn {
+    font-size: 2rem;
+    margin-left: 28px;
+    background-color: transparent;
+    padding:4px  8px;
+}
