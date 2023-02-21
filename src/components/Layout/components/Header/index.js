@@ -7,7 +7,7 @@ import {
     faGear,
     faKeyboard,
     faMagnifyingGlass,
-    faPaperPlane,
+    faPlus,
     faQuestion,
     faSignOut,
     faSpinner,
@@ -22,6 +22,8 @@ import 'tippy.js/dist/tippy.css';
 
 import images from '~/assets/images';
 import Button from '~/components/Button';
+import { InboxIcon, UploadIcon } from '~/components/Icon';
+import Image from '~/components/Image';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import Menu from '~/components/Popper/Menu';
 import AcountItem from '../AcountItem';
@@ -95,7 +97,7 @@ function Header() {
             icon: <FontAwesomeIcon icon={faSignOut} />,
             title: 'Logout',
             to: '/logout',
-            separate:true
+            separate: true,
         },
     ];
 
@@ -136,18 +138,22 @@ function Header() {
                     </div>
                 </HeadlessTippy>
                 <div className={cx('action')}>
+                    <Button upload leftIcon={<FontAwesomeIcon icon={faPlus} />}>
+                        Upload
+                    </Button>
                     {currentUser ? (
                         <div className={cx('current-user')}>
                             <>
                                 <Tippy delay={[0, 200]} content="upload" placement="bottom">
-                                    {/* <Button leftIcon={<FontAwesomeIcon icon={faPlus} />}>Upload</Button> */}
-
                                     <button className={cx('action-btn')}>
-                                        <FontAwesomeIcon icon={faPaperPlane} />
+                                        <UploadIcon />
                                     </button>
-                                    {/* <button className={cx('action-btn')}>
-                                        <FontAwesomeIcon icon={faMessage} />
-                                    </button> */}
+                                </Tippy>
+                                <Tippy delay={[0, 200]} content="inbox" placement="bottom">
+                                    <button className={cx('action-btn')}>
+                                        <span className={cx('notification')}>12 </span>
+                                        <InboxIcon />
+                                    </button>
                                 </Tippy>
                             </>
                         </div>
@@ -159,7 +165,7 @@ function Header() {
                     )}
                     <Menu items={currentUser ? userMenu : MENU_ITEMS}>
                         {currentUser ? (
-                            <img
+                            <Image
                                 className={cx('user-avatar')}
                                 src="https://p16-sign-va.tiktokcdn.com/musically-maliva-obj/1641702322139141~c5_100x100.jpeg?x-expires=1676858400&x-signature=vshw6NC8ryv3S09ZZR1BiEiebLo%3D"
                                 alt="Nguyen van A"

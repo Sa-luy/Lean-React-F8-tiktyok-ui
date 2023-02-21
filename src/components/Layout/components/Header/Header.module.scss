@@ -76,10 +76,7 @@
     cursor: pointer;
    color:  rgba(22, 24, 35, 0.34);
 
-    // &hover {
-    //     cursor: pointer;
-
-    // }
+   
 
 }
 
@@ -109,6 +106,7 @@ input:not(:placeholder-shown) ~ .search-btn {
     align-items: center;
 }
 .action-btn {
+    position: relative;
     font-size: 2.4rem;
     color: #161823;
     background: transparent;
@@ -116,11 +114,12 @@ input:not(:placeholder-shown) ~ .search-btn {
     cursor: pointer;
 }
 .user-avatar {
-    height: 3.2rem;
-    width: 3.2rem;
+    width: 32px;
+    height: 32px;
     object-fit: cover;
     border-radius: 50%;
     margin-left: 12px;
+    margin-left: 14px;
     cursor: pointer;
 }
 .more-btn {
@@ -129,4 +128,18 @@ input:not(:placeholder-shown) ~ .search-btn {
     background-color: transparent;
     padding:4px  8px;
     cursor: pointer;
+}
+.notification {
+    position: absolute;
+    padding: 3px;
+    border-radius: 45%;
+    width: 2.5rem;
+    top:0%;
+    left: 3rem;
+    font-size: 12px;
+    background-color: var(--primary);
+    color: aliceblue;
+
+
+
 }

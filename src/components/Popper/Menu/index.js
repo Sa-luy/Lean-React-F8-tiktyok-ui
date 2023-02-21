@@ -10,7 +10,6 @@ export const cx = classNames.bind(styles);
 function Menu({ children, items = [], onChange = () => {} }) {
     const [history, setHistory] = useState([{ data: items }]);
 
-    console.log(history);
     const curent = history[history.length - 1];
     const renderItems = () => {
         return curent.data.map((item, index) => {

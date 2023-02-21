@@ -7,10 +7,12 @@
     border-radius: 4px;
     font-size: 1.6rem;
     font-weight: 600;
+    font-family: 'ProximaNova', sans-serif;
     cursor: pointer;
     background-color: var(--white);
     border: 1px solid transparent;
     user-select: none;
+    margin-left: 1.6rem;
 
     + .wrapper {
         margin-left: 16px;
@@ -22,7 +24,7 @@
 }
 
 .icon +.tittle , .tittle + .icon {
-    margin-left: 8px;
+    margin-left: 4px;
     
 }
 .icon {
