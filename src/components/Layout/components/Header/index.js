@@ -1,17 +1,24 @@
 import {
     faCircleXmark,
+    faCoins,
     faEarthAsia,
     faEllipsisVertical,
+    faFileVideo,
+    faGear,
     faKeyboard,
     faMagnifyingGlass,
-    faPlus,
+    faPaperPlane,
     faQuestion,
+    faSignOut,
     faSpinner,
+    faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Tippy from '@tippyjs/react/headless';
+import Tippy from '@tippyjs/react';
+import HeadlessTippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
+import 'tippy.js/dist/tippy.css';
 
 import images from '~/assets/images';
 import Button from '~/components/Button';
@@ -24,31 +31,85 @@ const cx = classNames.bind(styles);
 const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faEarthAsia} />,
-        tittle: 'English',
+        title: 'English',
+        children: {
+            title: 'Language',
+            data: [
+                {
+                    type: 'Language',
+                    code: 'vi',
+                    title: 'vietnam',
+                },
+                {
+                    type: 'Language',
+                    code: 'en',
+                    title: 'English',
+                },
+            ],
+        },
     },
     {
         icon: <FontAwesomeIcon icon={faQuestion} />,
-        tittle: 'Feedback & help',
+        title: 'Feedback & help',
         to: '/feedback',
     },
     {
         icon: <FontAwesomeIcon icon={faKeyboard} />,
-        tittle: 'keyboar shortcuts',
+        title: 'keyboar shortcuts',
     },
 ];
 
 function Header() {
     const [searchResult, setsearchResult] = useState([]);
+
+    const currentUser = true;
+
+    const userMenu = [
+        {
+            icon: <FontAwesomeIcon icon={faUser} />,
+            title: 'View Profile',
+            to: '/profile',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faCoins} />,
+            title: 'Get Coins',
+            to: '/coin',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faFileVideo} />,
+            title: 'Live Studio',
+            to: '/live-tudio',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faGear} />,
+            title: 'Setting',
+            to: '/setting',
+        },
+        ...MENU_ITEMS,
+        {
+            icon: <FontAwesomeIcon icon={faQuestion} />,
+            title: 'Dark more',
+            to: '/dark-more',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faSignOut} />,
+            title: 'Logout',
+            to: '/logout',
+            separate:true
+        },
+    ];
+
     useEffect(() => {
         setTimeout(() => {
             setsearchResult([]);
-        }, 2000);
+        }, 0);
     }, []);
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <img src={images.logo} alt="Tiktok" />
-                <Tippy
+                <HeadlessTippy
                     interactive
                     visible={searchResult.length > 0}
                     render={(attrs) => (
@@ -73,22 +134,41 @@ function Header() {
                             <FontAwesomeIcon icon={faMagnifyingGlass} />
                         </button>
                     </div>
-                </Tippy>
+                </HeadlessTippy>
                 <div className={cx('action')}>
-                    {/* <Button upload>
-                        {' '}
-                        <span className={cx('icon-upload')}>
-                            <FontAwesomeIcon icon={faPlus} />
-                        </span>
-                        Upload
-                    </Button> */}
-                    <Button rightIcon={<FontAwesomeIcon icon={faPlus} />}>Upload</Button>
-                    <Button primary>Log in</Button>
-                    <Button rounded>Donwloan App</Button>
-                    <Menu items={MENU_ITEMS}>
-                        <button className={cx('more-btn')}>
-                            <FontAwesomeIcon icon={faEllipsisVertical} />
-                        </button>
+                    {currentUser ? (
+                        <div className={cx('current-user')}>
+                            <>
+                                <Tippy delay={[0, 200]} content="upload" placement="bottom">
+                                    {/* <Button leftIcon={<FontAwesomeIcon icon={faPlus} />}>Upload</Button> */}
+
+                                    <button className={cx('action-btn')}>
+                                        <FontAwesomeIcon icon={faPaperPlane} />
+                                    </button>
+                                    {/* <button className={cx('action-btn')}>
+                                        <FontAwesomeIcon icon={faMessage} />
+                                    </button> */}
+                                </Tippy>
+                            </>
+                        </div>
+                    ) : (
+                        <div>
+                            <Button primary>Log in</Button>
+                            <Button rounded>Donwloan App</Button>
+                        </div>
+                    )}
+                    <Menu items={currentUser ? userMenu : MENU_ITEMS}>
+                        {currentUser ? (
+                            <img
+                                className={cx('user-avatar')}
+                                src="https://p16-sign-va.tiktokcdn.com/musically-maliva-obj/1641702322139141~c5_100x100.jpeg?x-expires=1676858400&x-signature=vshw6NC8ryv3S09ZZR1BiEiebLo%3D"
+                                alt="Nguyen van A"
+                            />
+                        ) : (
+                            <button className={cx('more-btn')}>
+                                <FontAwesomeIcon icon={faEllipsisVertical} />
+                            </button>
+                        )}
                     </Menu>
                 </div>
             </div>

@@ -15,6 +15,7 @@
     height: 100%;
     
     width: var(--default-layout-width);
+    padding:0  var(--default-layout-horizontal-space);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -103,9 +104,29 @@ input:not(:placeholder-shown) ~ .search-btn {
         background: rgba(22, 24, 35, .06);
     }
 }
+.action {
+    display: flex;
+    align-items: center;
+}
+.action-btn {
+    font-size: 2.4rem;
+    color: #161823;
+    background: transparent;
+    padding: 4px 12px;
+    cursor: pointer;
+}
+.user-avatar {
+    height: 3.2rem;
+    width: 3.2rem;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-left: 12px;
+    cursor: pointer;
+}
 .more-btn {
     font-size: 2rem;
     margin-left: 28px;
     background-color: transparent;
     padding:4px  8px;
+    cursor: pointer;
 }
